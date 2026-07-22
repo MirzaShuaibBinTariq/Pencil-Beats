@@ -355,3 +355,7 @@ SCROLLBAR
 ::-webkit-scrollbar-thumb:hover{
     background:#2d8d46;
 }
+.chapter-link{
+    text-decoration:none;
+    color:inherit;
+}
