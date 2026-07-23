@@ -1,41 +1,90 @@
-// =========================
-// Pencil Beats - Version 2
-// =========================
+// ===============================
+// Pencil Beats Main Script
+// ===============================
 
-const welcomeScreen = document.getElementById("welcomeScreen");
-const homePage = document.getElementById("homePage");
-const backButton = document.getElementById("backButton");
+document.addEventListener("DOMContentLoaded", function () {
 
-// Hide Home Page on first load
-homePage.style.display = "none";
+    const welcomeScreen = document.getElementById("welcomeScreen");
+    const homePage = document.getElementById("homePage");
+    const backButton = document.getElementById("backButton");
 
-// =========================
-// Open Home Page
-// =========================
 
-welcomeScreen.addEventListener("click", () => {
+    // ===============================
+    // Welcome Screen
+    // ===============================
 
-    welcomeScreen.style.opacity = "0";
+    if (welcomeScreen && homePage) {
 
-    setTimeout(() => {
 
-        welcomeScreen.style.display = "none";
-        homePage.style.display = "block";
+        if (sessionStorage.getItem("pencilBeatsEntered")) {
 
-    }, 800);
+            welcomeScreen.style.display = "none";
+            homePage.style.display = "block";
 
-});
+        } 
+        else {
 
-// =========================
-// Return to Welcome Screen
-// =========================
+            welcomeScreen.style.display = "flex";
+            homePage.style.display = "none";
 
-backButton.addEventListener("click", () => {
 
-    homePage.style.display = "none";
+            welcomeScreen.onclick = function () {
 
-    welcomeScreen.style.display = "flex";
+                welcomeScreen.style.display = "none";
+                homePage.style.display = "block";
 
-    welcomeScreen.style.opacity = "1";
+                sessionStorage.setItem(
+                    "pencilBeatsEntered",
+                    "true"
+                );
+
+            };
+
+        }
+
+    }
+
+
+
+    // ===============================
+    // Back Button
+    // ===============================
+
+    if (backButton) {
+
+        backButton.onclick = function () {
+
+            window.history.back();
+
+        };
+
+    }
+
+
+
+    // ===============================
+    // Chapter Card Hover
+    // ===============================
+
+    const cards = document.querySelectorAll(".chapter-card");
+
+
+    cards.forEach(card => {
+
+        card.addEventListener("mouseenter", function(){
+
+            card.style.transform="translateY(-5px)";
+
+        });
+
+
+        card.addEventListener("mouseleave", function(){
+
+            card.style.transform="translateY(0)";
+
+        });
+
+    });
+
 
 });
